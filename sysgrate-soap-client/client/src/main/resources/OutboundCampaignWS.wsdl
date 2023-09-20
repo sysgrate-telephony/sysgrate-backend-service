@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://nortel.com/CCMMOutboundWebservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://datatypes.outboundwebservices.ccmm.applications.nortel.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://nortel.com/CCMMOutboundWebservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://nortel.com/CCMMOutboundWebservices/">
+      <s:import namespace="http://datatypes.outboundwebservices.ccmm.applications.nortel.com" />
+      <s:element name="GetCampaigns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sessionKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCampaignsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCampaignsResult" type="s1:OWCampaigns" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppendContactsToCampaign">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CampaignID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="contact" type="s1:OWContact" />
+            <s:element minOccurs="0" maxOccurs="1" name="sessionKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppendContactsToCampaignResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AppendContactsToCampaignResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get200CampaignContacts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CampaignID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="LastContactID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="sessionKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get200CampaignContactsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get200CampaignContactsResult" type="s1:OWContacts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://datatypes.outboundwebservices.ccmm.applications.nortel.com">
+      <s:complexType name="OWCampaigns">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CampaignList" type="s1:ArrayOfOWCampaign" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOWCampaign">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OWCampaign" nillable="true" type="s1:OWCampaign" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWCampaign">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfContacts" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfContactsProcessed" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Skillset" type="s1:OWSkillset" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s1:OWStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartOfRun" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoadContactsPerInterval" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="DialingPrefix" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoDialTimeOut" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumRingTime" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Locked" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DispositionCodes" type="s1:ArrayOfOWDispositioncode" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfContactsClosed" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWSkillset">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOWDispositioncode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OWDispositioncode" nillable="true" type="s1:OWDispositioncode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWDispositioncode">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RetryTimeOut" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumbericValue" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxRetryCount" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Deletable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CallRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarkAsDeleted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaveAgentScript" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWContact">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ContactID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="CampaignName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s1:OWAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFieldList" type="s1:ArrayOfOWCustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s1:OWPhoneNumber" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreferredAgentID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="PreferredAgentSpecified" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SkillsetID" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOWCustomField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OWCustomField" nillable="true" type="s1:OWCustomField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWCustomField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsTextVisible" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWPhoneNumber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IntCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OWContacts">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContactList" type="s1:ArrayOfOWContact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOWContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OWContact" nillable="true" type="s1:OWContact" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCampaignsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCampaigns" />
+  </wsdl:message>
+  <wsdl:message name="GetCampaignsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCampaignsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppendContactsToCampaignSoapIn">
+    <wsdl:part name="parameters" element="tns:AppendContactsToCampaign" />
+  </wsdl:message>
+  <wsdl:message name="AppendContactsToCampaignSoapOut">
+    <wsdl:part name="parameters" element="tns:AppendContactsToCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get200CampaignContactsSoapIn">
+    <wsdl:part name="parameters" element="tns:Get200CampaignContacts" />
+  </wsdl:message>
+  <wsdl:message name="Get200CampaignContactsSoapOut">
+    <wsdl:part name="parameters" element="tns:Get200CampaignContactsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OutboundCampaignWSSoap">
+    <wsdl:operation name="GetCampaigns">
+      <wsdl:input message="tns:GetCampaignsSoapIn" />
+      <wsdl:output message="tns:GetCampaignsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppendContactsToCampaign">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Can only be called every 1 seconds</wsdl:documentation>
+      <wsdl:input message="tns:AppendContactsToCampaignSoapIn" />
+      <wsdl:output message="tns:AppendContactsToCampaignSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get200CampaignContacts">
+      <wsdl:input message="tns:Get200CampaignContactsSoapIn" />
+      <wsdl:output message="tns:Get200CampaignContactsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OutboundCampaignWSSoap" type="tns:OutboundCampaignWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCampaigns">
+      <soap:operation soapAction="http://nortel.com/CCMMOutboundWebservices/GetCampaigns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppendContactsToCampaign">
+      <soap:operation soapAction="http://nortel.com/CCMMOutboundWebservices/AppendContactsToCampaign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get200CampaignContacts">
+      <soap:operation soapAction="http://nortel.com/CCMMOutboundWebservices/Get200CampaignContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OutboundCampaignWSSoap12" type="tns:OutboundCampaignWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCampaigns">
+      <soap12:operation soapAction="http://nortel.com/CCMMOutboundWebservices/GetCampaigns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppendContactsToCampaign">
+      <soap12:operation soapAction="http://nortel.com/CCMMOutboundWebservices/AppendContactsToCampaign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get200CampaignContacts">
+      <soap12:operation soapAction="http://nortel.com/CCMMOutboundWebservices/Get200CampaignContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OutboundCampaignWS">
+    <wsdl:port name="OutboundCampaignWSSoap" binding="tns:OutboundCampaignWSSoap">
+      <soap:address location="http://ccmm-minchin/ccmmoutboundwebservices/OutboundCampaignWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OutboundCampaignWSSoap12" binding="tns:OutboundCampaignWSSoap12">
+      <soap12:address location="http://ccmm-minchin/ccmmoutboundwebservices/OutboundCampaignWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
