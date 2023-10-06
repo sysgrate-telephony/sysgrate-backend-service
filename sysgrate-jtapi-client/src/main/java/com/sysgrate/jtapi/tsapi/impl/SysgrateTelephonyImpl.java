@@ -1,3 +1,4 @@
+
 package com.sysgrate.jtapi.tsapi.impl;
 
 import com.sysgrate.jtapi.tsapi.config.SysgrateConfiguration;
@@ -55,23 +56,24 @@ public class SysgrateTelephonyImpl  implements ProviderListener {
 	public synchronized void login() {
 		String serviceName;
 		String login;
-		String password;
 		String providerString;
+		String password;
 
 		serviceName = sysgrateConfiguration.getTlink();
 		login = sysgrateConfiguration.getUsername();
+
 		password = sysgrateConfiguration.getPassword();
+
 
 		providerString = serviceName + ";loginID=" + login + ";passwd="
 				+ password;
 
 		logger.info("Provider String is :" +providerString);
+		try{
 
 		if (jtapiPeer == null) {
 			return;
 		}
-
-		try {
 			// create provider
 			provider = jtapiPeer.getProvider(providerString);
 			logger.info("Provider created successfully.\n\n");
