@@ -68,7 +68,7 @@ public class SysgrateTelephonyImpl  implements ProviderListener {
 		providerString = serviceName + ";loginID=" + login + ";passwd="
 				+ password;
 
-		logger.info("Provider String is :" +providerString);
+
 		try{
 
 		if (jtapiPeer == null) {
